@@ -1,0 +1,83 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CoaLoad.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CoaLoad.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+    
+    <Panel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+
+            <Border Width="150" Height="150" CornerRadius="75">
+                <Image Source="avares://CoaLoad/Assets/cobalt.png"></Image>
+            </Border>
+
+
+            <TextBox Watermark="paste the link here"
+                     Width="300"
+                     HorizontalAlignment="Center"
+                     Background="#1E1E1E"
+                     Foreground="White"
+                     BorderBrush="Gray"
+                     BorderThickness="1"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+
+                <Button Width="80" Background="#282828" Foreground="White" BorderBrush="Gray" BorderThickness="1">
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <TextBlock Text="[Icon]" VerticalAlignment="Center"/>
+                        <TextBlock Text="auto" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Width="80" Background="#282828" Foreground="White" BorderBrush="Gray" BorderThickness="1">
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Image Source="avares://CoaLoad/Assets/music.png" MaxHeight="20" />
+                        <TextBlock Text="audio" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+
+
+
+
+                <Button Width="80" Background="#282828" Foreground="White" BorderBrush="Gray" BorderThickness="1">
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <TextBlock Text="[Icon]" VerticalAlignment="Center"/>
+                        <TextBlock Text="mute" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <Button
+                    Width="300"
+                    HorizontalAlignment="Center"
+                    Background="#282828"
+                    Foreground="White"
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Click="DownloadButtonClicked">
+                <TextBlock Text="Download" HorizontalAlignment="Center"/>
+            </Button>
+
+        </StackPanel>
+
+        <TextBlock Text="by continuing, you agree to terms and ethics of use"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   Margin="0,0,0,20"
+                   Foreground="Gray"
+                   FontSize="10">
+            <TextBlock.TextDecorations>
+            </TextBlock.TextDecorations>
+        </TextBlock>
+    </Panel>
+    
+</UserControl>
