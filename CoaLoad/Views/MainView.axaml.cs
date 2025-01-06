@@ -1,8 +1,10 @@
 using System;
 using System.Diagnostics;
+using Android.Content;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Threading;
@@ -25,7 +27,7 @@ public partial class MainView : UserControl
         _notificationTimer.Tick += NotificationTimer_Tick;
     }
 
-    private void DownloadButtonClicked(object sender, RoutedEventArgs e)
+    private async void DownloadButtonClicked(object sender, RoutedEventArgs e)
     {
         if (string.IsNullOrEmpty(UrlInputBox.Text)) // Check if TextBox is empty
         {
@@ -35,7 +37,8 @@ public partial class MainView : UserControl
         }
         else
         {
-            // Proceed with download logic
+            
+            
         }
     }
 
@@ -109,5 +112,11 @@ public partial class MainView : UserControl
         AutoIcon.Fill = new SolidColorBrush(Colors.White);
         AudioIcon.Fill = new SolidColorBrush(Colors.White);
         MuteIcon.Fill = new SolidColorBrush(Colors.Black);
+    }
+
+    private async void ClipboardButtonClicked(object? sender, RoutedEventArgs e)
+    {
+        var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
+        UrlInputBox.Text = await clipboard.GetTextAsync();
     }
 }
