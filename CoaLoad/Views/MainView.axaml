@@ -6,7 +6,13 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CoaLoad.Views.MainView"
              x:DataType="vm:MainViewModel">
-  <Design.DataContext>
+    <UserControl.Resources>
+        <StreamGeometry x:Key="music_regular">M11.5,2.75 C11.5,2.22634895 12.0230228,1.86388952 12.5133347,2.04775015 L18.8913911,4.43943933 C20.1598961,4.91511241 21.0002742,6.1277638 21.0002742,7.48252202 L21.0002742,10.7513533 C21.0002742,11.2750044 20.4772513,11.6374638 19.9869395,11.4536032 L13,8.83332147 L13,17.5 C13,17.5545945 12.9941667,17.6078265 12.9830895,17.6591069 C12.9940859,17.7709636 13,17.884807 13,18 C13,20.2596863 10.7242052,22 8,22 C5.27579485,22 3,20.2596863 3,18 C3,15.7403137 5.27579485,14 8,14 C9.3521238,14 10.5937815,14.428727 11.5015337,15.1368931 L11.5,2.75 Z M8,15.5 C6.02978478,15.5 4.5,16.6698354 4.5,18 C4.5,19.3301646 6.02978478,20.5 8,20.5 C9.97021522,20.5 11.5,19.3301646 11.5,18 C11.5,16.6698354 9.97021522,15.5 8,15.5 Z M13,3.83223733 L13,7.23159672 L19.5002742,9.669116 L19.5002742,7.48252202 C19.5002742,6.75303682 19.0477629,6.10007069 18.3647217,5.84393903 L13,3.83223733 Z</StreamGeometry>
+        <StreamGeometry x:Key="star_emphasis_regular">M8.64376 8.20797L11.3273 2.75967C11.6022 2.20153 12.398 2.20153 12.6729 2.75967L15.3565 8.20797L21.3674 9.07657C21.983 9.16552 22.229 9.92197 21.7835 10.356L17.436 14.5922L18.4623 20.5779C18.5674 21.1908 17.9238 21.6581 17.3736 21.3682L12.0001 18.5378L6.62666 21.3682C6.07618 21.6582 5.43236 21.1904 5.53802 20.5773L6.56941 14.5922L2.21703 10.3563C1.77116 9.9224 2.01708 9.16555 2.63286 9.07657L8.64376 8.20797ZM12.0001 4.78844L9.81483 9.22516C9.70558 9.44698 9.49401 9.60069 9.24928 9.63605L4.35442 10.3434L7.89869 13.7927C8.07589 13.9652 8.1567 14.2139 8.11471 14.4576L7.27482 19.3315L11.6506 17.0266C11.8694 16.9113 12.1309 16.9113 12.3497 17.0266L16.7269 19.3322L15.8909 14.457C15.8492 14.2136 15.9299 13.9653 16.1067 13.7931L19.647 10.3435L14.751 9.63605C14.5063 9.60069 14.2947 9.44698 14.1854 9.22516L12.0001 4.78844Z M1.16438 18.2185C0.905619 17.8951 0.95806 17.4231 1.28151 17.1644L3.78151 15.1643C4.10495 14.9056 4.57692 14.958 4.83568 15.2815C5.09444 15.6049 5.042 16.0769 4.71855 16.3357L2.21855 18.3357C1.8951 18.5944 1.42313 18.542 1.16438 18.2185Z M22.7186 17.1643C23.042 17.4231 23.0945 17.8951 22.8357 18.2185C22.5769 18.542 22.105 18.5944 21.7815 18.3357L19.2815 16.3357C18.9581 16.0769 18.9056 15.6049 19.1644 15.2815C19.4232 14.958 19.8951 14.9056 20.2186 15.1643L22.7186 17.1643Z M1.16438 3.78148C0.905619 4.10492 0.95806 4.57689 1.28151 4.83565L3.78151 6.83565C4.10495 7.09441 4.57692 7.04197 4.83568 6.71852C5.09444 6.39508 5.042 5.92311 4.71855 5.66435L2.21855 3.66435C1.8951 3.40559 1.42313 3.45803 1.16438 3.78148Z M22.7186 4.83565C23.042 4.57689 23.0945 4.10492 22.8357 3.78148C22.5769 3.45803 22.105 3.40559 21.7815 3.66435L19.2815 5.66435C18.9581 5.92311 18.9056 6.39508 19.1644 6.71852C19.4232 7.04197 19.8951 7.09441 20.2186 6.83565L22.7186 4.83565Z</StreamGeometry>
+        <StreamGeometry x:Key="speaker_off_regular">M28 29.7678L41.8661 43.6339C42.3543 44.122 43.1457 44.122 43.6339 43.6339C44.122 43.1457 44.122 42.3543 43.6339 41.8661L6.13388 4.36612C5.64573 3.87796 4.85427 3.87796 4.36611 4.36612C3.87796 4.85427 3.87796 5.64573 4.36611 6.13388L13.2322 15H9C6.10051 15 3.75 17.3505 3.75 20.25V27.75C3.75 30.6495 6.10051 33 9 33H13.702C14.8734 33 16.0034 33.4328 16.875 34.2153L25.081 41.5815C26.2077 42.5929 28 41.7933 28 40.2793V29.7678ZM25.5 27.2678V38.5981L18.5451 32.3549C17.2146 31.1606 15.4898 30.5 13.702 30.5H9C7.48122 30.5 6.25 29.2688 6.25 27.75V20.25C6.25 18.7312 7.48122 17.5 9 17.5H13.702C14.3147 17.5 14.92 17.4224 15.5046 17.2723L25.5 27.2678Z M19.8115 14.5082L18.0412 12.7379L25.081 6.41847C26.2076 5.40709 28 6.20669 28 7.72074V22.6967L25.5 20.1967V9.40185L19.8115 14.5082Z M36.1857 30.8824L34.335 29.0317C34.966 27.7376 35.5 26.0404 35.5 24C35.5 21.5224 34.7127 19.5507 33.9203 18.1923C33.5242 17.5133 33.1298 16.9931 32.8397 16.6477C32.695 16.4754 32.577 16.3476 32.499 16.2664C32.46 16.2259 32.4311 16.197 32.414 16.1802L32.3972 16.164L32.398 16.1646C31.8935 15.6947 31.8647 14.9048 32.334 14.3994C32.8038 13.8935 33.5947 13.8642 34.1006 14.334L33.25 15.25C34.1006 14.334 34.1014 14.3347 34.1014 14.3347L34.1022 14.3356L34.1042 14.3374L34.1092 14.3421L34.1228 14.355C34.1336 14.3653 34.1476 14.3788 34.1646 14.3955C34.1987 14.4289 34.245 14.4753 34.3018 14.5343C34.4152 14.6524 34.5707 14.8215 34.754 15.0398C35.1202 15.4757 35.6008 16.1117 36.0797 16.9327C37.0373 18.5743 38 20.9776 38 24C38 26.9108 37.1071 29.2474 36.1857 30.8824Z M41.0185 35.7152L39.1733 33.87C40.3712 31.5479 41.5 28.2383 41.5 24C41.5 19.4474 40.1976 15.9662 38.906 13.6297C38.2594 12.46 37.6157 11.5776 37.1403 10.9943C36.9028 10.7028 36.708 10.4867 36.5767 10.3474C36.511 10.2777 36.4614 10.2274 36.4303 10.1965C36.4148 10.181 36.4039 10.1704 36.398 10.1648L36.3949 10.1617L36.393 10.16C35.8916 9.68785 35.8665 8.89867 36.3376 8.39562C36.8094 7.89169 37.6004 7.8657 38.1044 8.33755L37.2501 9.24987C38.1044 8.33755 38.1053 8.33839 38.1053 8.33839L38.1063 8.33935L38.1087 8.34162L38.115 8.34761L38.1336 8.36536C38.1485 8.37975 38.1685 8.39926 38.1932 8.42388C38.2427 8.4731 38.3112 8.54276 38.396 8.6327C38.5655 8.81253 38.8003 9.07375 39.0784 9.41509C39.6343 10.0974 40.3656 11.1025 41.094 12.4203C42.5524 15.0587 44 18.9526 44 24C44 29.0474 42.5524 32.9412 41.094 35.5797L41.0739 35.6159L41.0185 35.7152Z</StreamGeometry>
+
+    </UserControl.Resources>
+    <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
     <vm:MainViewModel />
@@ -20,40 +26,76 @@
             </Border>
 
 
-            <TextBox Watermark="paste the link here"
+            <TextBox Watermark="Paste the link here"
+                     TextAlignment="Center"
                      Width="300"
+                     Height="35"
                      HorizontalAlignment="Center"
                      Background="#1E1E1E"
                      Foreground="White"
-                     BorderBrush="Gray"
-                     BorderThickness="1"/>
+                     BorderBrush="#383838"
+                     BorderThickness="2"
+                     CornerRadius="11"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
 
-                <Button Width="80" Background="#282828" Foreground="White" BorderBrush="Gray" BorderThickness="1">
-                    <StackPanel Orientation="Horizontal" Spacing="5">
-                        <TextBlock Text="[Icon]" VerticalAlignment="Center"/>
-                        <TextBlock Text="auto" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
+<ToggleButton Width="80" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" ClickMode="Release" Click="AutoButton_OnClick" Name="AutoButton" IsChecked="True">
+    <ToggleButton.Styles>
+        <!-- https://stackoverflow.com/questions/77196387/how-to-set-the-background-colour-of-a-checked-toggle-button-in-avalonia-ui-deskt -->
+        <Style Selector="ToggleButton">
+            <Setter Property="Background" Value="#191919" />
+            <Setter Property="Foreground" Value="#e1e1e1" />
+        </Style>
+        <Style Selector="ToggleButton:checked /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#e1e1e1" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+    </ToggleButton.Styles>
+    <StackPanel Orientation="Horizontal" Spacing="5">
+        <Viewbox MaxHeight="20" Stretch="Uniform">
+            <Path Name="AutoIcon" Fill="Black" Data="{StaticResource star_emphasis_regular}" />
+        </Viewbox>
+        <TextBlock Text="Auto" VerticalAlignment="Center" FontWeight="SemiBold"/>
+    </StackPanel>
+</ToggleButton>
 
-                <Button Width="80" Background="#282828" Foreground="White" BorderBrush="Gray" BorderThickness="1">
-                    <StackPanel Orientation="Horizontal" Spacing="5">
-                        <Image Source="avares://CoaLoad/Assets/music.png" MaxHeight="20" />
-                        <TextBlock Text="audio" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
+<ToggleButton Width="80" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" ClickMode="Release" Click="AudioButton_OnClick" Name="AudioButton">
+    <ToggleButton.Styles>
+        <Style Selector="ToggleButton">
+            <Setter Property="Background" Value="#191919" />
+            <Setter Property="Foreground" Value="#e1e1e1" />
+        </Style>
+        <Style Selector="ToggleButton:checked /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#e1e1e1" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+    </ToggleButton.Styles>
+    <StackPanel Orientation="Horizontal" Spacing="5">
+        <Viewbox MaxHeight="20" Stretch="Uniform">
+            <Path Name="AudioIcon" Fill="White" Data="{StaticResource music_regular}" />
+        </Viewbox>
+        <TextBlock Text="Audio" VerticalAlignment="Center" FontWeight="SemiBold"/>
+    </StackPanel>
+</ToggleButton>
 
-
-
-
-
-                <Button Width="80" Background="#282828" Foreground="White" BorderBrush="Gray" BorderThickness="1">
-                    <StackPanel Orientation="Horizontal" Spacing="5">
-                        <TextBlock Text="[Icon]" VerticalAlignment="Center"/>
-                        <TextBlock Text="mute" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
+<ToggleButton Width="80" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" ClickMode="Release" Click="MuteButton_OnClick" Name="MuteButton">
+    <ToggleButton.Styles>
+        <Style Selector="ToggleButton">
+            <Setter Property="Background" Value="#191919" />
+            <Setter Property="Foreground" Value="#e1e1e1" />
+        </Style>
+        <Style Selector="ToggleButton:checked /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#e1e1e1" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+    </ToggleButton.Styles>
+    <StackPanel Orientation="Horizontal" Spacing="5">
+        <Viewbox MaxHeight="20" Stretch="Uniform">
+            <Path Name="MuteIcon" Fill="White" Data="{StaticResource speaker_off_regular}" />
+        </Viewbox>
+        <TextBlock Text="Mute" VerticalAlignment="Center" FontWeight="SemiBold"/>
+    </StackPanel>
+</ToggleButton>
             </StackPanel>
 
             <Button
@@ -63,21 +105,12 @@
                     Foreground="White"
                     BorderBrush="Gray"
                     BorderThickness="1"
+                    CornerRadius="11"
                     Click="DownloadButtonClicked">
                 <TextBlock Text="Download" HorizontalAlignment="Center"/>
             </Button>
 
         </StackPanel>
-
-        <TextBlock Text="by continuing, you agree to terms and ethics of use"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom"
-                   Margin="0,0,0,20"
-                   Foreground="Gray"
-                   FontSize="10">
-            <TextBlock.TextDecorations>
-            </TextBlock.TextDecorations>
-        </TextBlock>
     </Panel>
     
 </UserControl>
