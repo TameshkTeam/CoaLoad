@@ -9,6 +9,8 @@
     <PublishSingleFile>true</PublishSingleFile>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
     <SelfContained>true</SelfContained>
+    <PublishTrimmed>true</PublishTrimmed>
+    <AssemblyName>CoaLoad-Desktop</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup>

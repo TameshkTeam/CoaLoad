@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
@@ -29,7 +31,7 @@ public partial class MainView : UserControl
         {
             _originalTextBoxBorderBrush = UrlInputBox.BorderBrush as Brush;
             UrlInputBox.BorderBrush = Brushes.IndianRed;
-            ShowNotification("Please paste a link first.", 3000);
+            ShowNotification("Please paste a link first.", 2000);
         }
         else
         {
@@ -45,12 +47,11 @@ public partial class MainView : UserControl
         NotificationProgressBar.Value = duration;
         NotificationPopup.IsOpen = true;
 
-        NotificationPopup.VerticalOffset +=
-            NotificationPopup.Bounds.Height * -1; // Offset by the popup's height to move it up
-
+        // Calculate the offset to ensure the popup stays within the window
         _notificationTimer.Stop();
         _notificationTimer.Start();
     }
+
 
     private void NotificationTimer_Tick(object sender, EventArgs e)
     {
