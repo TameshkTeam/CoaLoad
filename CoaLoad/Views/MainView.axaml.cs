@@ -3,22 +3,67 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Threading;
+using Avalonia.VisualTree;
 
 namespace CoaLoad.Views;
 
 public partial class MainView : UserControl
 {
+    private DispatcherTimer _notificationTimer;
+    private Brush _originalTextBoxBorderBrush;
+
     public MainView()
     {
         InitializeComponent();
+        _notificationTimer = new DispatcherTimer(DispatcherPriority.Normal)
+        {
+            Interval = TimeSpan.FromMilliseconds(10)
+        };
+        _notificationTimer.Tick += NotificationTimer_Tick;
     }
 
-    private void DownloadButtonClicked(object? sender, RoutedEventArgs e)
+    private void DownloadButtonClicked(object sender, RoutedEventArgs e)
     {
-        Console.WriteLine("Download button clicked");
-        
+        if (string.IsNullOrEmpty(UrlInputBox.Text)) // Check if TextBox is empty
+        {
+            _originalTextBoxBorderBrush = UrlInputBox.BorderBrush as Brush;
+            UrlInputBox.BorderBrush = Brushes.IndianRed;
+            ShowNotification("Please paste a link first.", 3000);
+        }
+        else
+        {
+            // Proceed with download logic
+        }
     }
-    
+
+    private void ShowNotification(string message, int duration)
+    {
+        UrlInputBox.BorderBrush = Brushes.IndianRed;
+        NotificationMessage.Text = message;
+        NotificationProgressBar.Maximum = duration;
+        NotificationProgressBar.Value = duration;
+        NotificationPopup.IsOpen = true;
+
+        NotificationPopup.VerticalOffset +=
+            NotificationPopup.Bounds.Height * -1; // Offset by the popup's height to move it up
+
+        _notificationTimer.Stop();
+        _notificationTimer.Start();
+    }
+
+    private void NotificationTimer_Tick(object sender, EventArgs e)
+    {
+        NotificationProgressBar.Value -= _notificationTimer.Interval.TotalMilliseconds;
+
+        if (NotificationProgressBar.Value <= 0)
+        {
+            _notificationTimer.Stop();
+            UrlInputBox.BorderBrush = _originalTextBoxBorderBrush;
+            NotificationPopup.IsOpen = false;
+        }
+    }
+
 
     private void AutoButton_OnClick(object? sender, RoutedEventArgs e)
     {
@@ -64,6 +109,4 @@ public partial class MainView : UserControl
         AudioIcon.Fill = new SolidColorBrush(Colors.White);
         MuteIcon.Fill = new SolidColorBrush(Colors.Black);
     }
-
-
 }
