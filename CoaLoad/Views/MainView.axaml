@@ -29,7 +29,7 @@
             </Border>
         </Popup>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
-
+            <Button Content="Settings" Click="SettingsButton_OnClick" HorizontalAlignment="Center"/>
             <Border Width="150" Height="150" CornerRadius="75">
                 <Image Source="avares://CoaLoad/Assets/cobalt.png"></Image>
             </Border>

@@ -1,14 +1,9 @@
 using System;
-using System.Diagnostics;
-using Android.Content;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
-using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Threading;
-using Avalonia.VisualTree;
+using CoaLoad.ViewModels;
 
 namespace CoaLoad.Views;
 
@@ -118,5 +113,13 @@ public partial class MainView : UserControl
     {
         var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
         UrlInputBox.Text = await clipboard.GetTextAsync();
+    }
+
+    private void SettingsButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if (Parent is Window window)
+        {
+            window.Content = new SettingsView { DataContext = new SettingsViewModel() };
+        }
     }
 }
