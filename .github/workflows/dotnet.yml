@@ -10,7 +10,8 @@ on:
     branches: [ "master" ]
 
 jobs:
-  setup:
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -26,24 +27,10 @@ jobs:
         distribution: 'temurin'
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
-
-  restore:
-    runs-on: ubuntu-latest
-    needs: setup
-
-    steps:
-    - uses: actions/checkout@v4
     - name: Restore workloads
       run: dotnet workload restore
     - name: Restore dependencies
       run: dotnet restore
-
-  publish:
-    runs-on: ubuntu-latest
-    needs: restore
-
-    steps:
-    - uses: actions/checkout@v4
     - name: Publish
       run: dotnet publish --no-restore
     - name: Upload Signed APK
@@ -56,5 +43,5 @@ jobs:
         tar -cJf CoaLoad-Desktop-amd64.tar.xz -C CoaLoad/CoaLoad.Desktop/bin/Release/net9.0/linux-x64/publish/ libSkiaSharp.so libHarfBuzzSharp.so CoaLoad-Desktop
     - uses: actions/upload-artifact@v3
       with:
-        name: Linux 64 Archive
+        name: Linux 64
         path: CoaLoad/CoaLoad.Desktop/bin/Release/net9.0/linux-x64/publish/CoaLoad-Desktop-amd64.tar.xz
