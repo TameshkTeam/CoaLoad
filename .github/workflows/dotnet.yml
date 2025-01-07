@@ -27,10 +27,10 @@ jobs:
         distribution: 'temurin'
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
-    - name: Restore dependencies
-      run: dotnet restore
     - name: Restore workloads
       run: dotnet workload restore
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - name: Test
