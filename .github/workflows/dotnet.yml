@@ -40,7 +40,7 @@ jobs:
         path: ./CoaLoad.Android/bin/Release/net9.0-android/publish/com.mahdium.coaload-Signed.apk
     - name: Compress and Upload Desktop Archive
       run: |
-        tar -cJf CoaLoad-Desktop-amd64.tar.xz -C CoaLoad/CoaLoad.Desktop/bin/Release/net9.0/linux-x64/publish/ libSkiaSharp.so libHarfBuzzSharp.so CoaLoad-Desktop
+        tar -cJf CoaLoad-Desktop-amd64.tar.xz -C ./CoaLoad.Desktop/bin/Release/net9.0/linux-x64/publish/ libSkiaSharp.so libHarfBuzzSharp.so CoaLoad-Desktop
     - uses: actions/upload-artifact@v3
       with:
         name: Linux 64
