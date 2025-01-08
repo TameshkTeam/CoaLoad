@@ -31,7 +31,20 @@ jobs:
       run: dotnet workload restore
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: echo "Done"
+    - name: Publish
+      run: dotnet publish --no-restore
+    - name: Upload Signed APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: Signed APK
+        path: ./CoaLoad.Android/bin/Release/net9.0-android/publish/com.mahdium.coaload-Signed.apk
+    - name: Compress Desktop Archive
+      run: |
+        cd ./CoaLoad.Desktop/bin/Release/net9.0/linux-x64/publish/
+        tar -cJf CoaLoad-Desktop-amd64.tar.xz libSkiaSharp.so libHarfBuzzSharp.so CoaLoad-Desktop
+    - name: Upload Desktop Archive
+      uses: actions/upload-artifact@v3
+      with:
+        name: Linux 64 Archive
+        path: ./CoaLoad.Desktop/bin/Release/net9.0/linux-x64/publish/CoaLoad-Desktop-amd64.tar.xz
+
