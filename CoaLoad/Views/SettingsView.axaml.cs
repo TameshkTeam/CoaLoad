@@ -37,7 +37,7 @@ namespace CoaLoad.Views
             var newSettings = new AppSettings.SettingsValues
             {
                 Instance = SettingsViewModel._selectedInstance,
-                VideoQuality = SettingsViewModel.SelectedVideoQuality
+                VideoQuality = SettingsViewModel._selectedVideoQuality
             };
             var res = await AppSettings.SaveSettings(newSettings);
             if (res)

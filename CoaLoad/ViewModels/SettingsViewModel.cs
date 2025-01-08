@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Reactive;
+using System.Threading.Tasks;
+using CoaLoad.Helpers;
 using ReactiveUI;
 
 namespace CoaLoad.ViewModels
@@ -14,7 +15,7 @@ namespace CoaLoad.ViewModels
             "https://instance3.cobalt.tools",
             "Custom Instance"
         };
-        
+
         public static ObservableCollection<string> VideoQualityOptions { get; } = new()
         {
             "144p",
@@ -26,12 +27,9 @@ namespace CoaLoad.ViewModels
             "1440p",
             "4k",
             "8k+"
-       
         };
 
-        
-
-        public static string _selectedInstance;
+        public static string? _selectedInstance;
         public string? SelectedInstance
         {
             get => _selectedInstance;
@@ -49,41 +47,48 @@ namespace CoaLoad.ViewModels
         }
 
         private string? _customInstanceUrl;
-
         public string? CustomInstanceUrl
         {
             get => _customInstanceUrl;
             set => this.RaiseAndSetIfChanged(ref _customInstanceUrl, value);
         }
 
-        public ReactiveCommand<Unit, Unit> SaveCommand { get; }
-        public static string SelectedVideoQuality { get; set; }
-
+        public static string? _selectedVideoQuality;
+        public string? SelectedVideoQuality
+        {
+            get => _selectedVideoQuality;
+            set => this.RaiseAndSetIfChanged(ref _selectedVideoQuality, value);
+        }
 
         public SettingsViewModel()
         {
-            SaveCommand = ReactiveCommand.Create(SaveSettings);
+            // Initialize the settings on construction
+            _ = InitializeSettings();
         }
 
-        private void SaveSettings()
+        private async Task InitializeSettings()
         {
-            Console.WriteLine($"Selected Instance: {_selectedInstance}");
-        }
+            // Load the settings from the JSON file
+            var loadedSettings = await AppSettings.LoadSettings();
 
-        private void AcceptCustomInstance()
-        {
-            SelectedInstance = CustomInstanceUrl;
-            DialogHostAvalonia.DialogHost.Close("CustomInstanceDialogHost");
-        }
+            // Apply the loaded settings to the ViewModel properties
+            SelectedInstance = InstanceOptions.Contains(loadedSettings.Instance)
+                ? loadedSettings.Instance
+                : "Custom Instance";
 
-        private void CloseDialog()
-        {
-            DialogHostAvalonia.DialogHost.Close("CustomInstanceDialogHost");
+            if (SelectedInstance == "Custom Instance")
+            {
+                CustomInstanceUrl = loadedSettings.Instance;
+            }
+
+            SelectedVideoQuality = VideoQualityOptions.Contains(loadedSettings.VideoQuality)
+                ? loadedSettings.VideoQuality
+                : VideoQualityOptions[0]; // Default to the first option
         }
 
         private void OpenCustomInstanceDialog()
         {
-            DialogHostAvalonia.DialogHost.Show(new SettingsViewModel(), "CustomInstanceDialogHost");
+            DialogHostAvalonia.DialogHost.Show(this, "CustomInstanceDialogHost");
         }
     }
 }

@@ -128,7 +128,6 @@
                         Grid.Row="3"
                         HorizontalAlignment="Center"
                         ItemsSource="{Binding VideoQualityOptions}"
-                        Name="VideoQualityComboBox"
                         SelectedItem="{Binding SelectedVideoQuality, Mode=TwoWay}"
                         Width="300">
                         <ComboBox.ItemTemplate>
@@ -137,6 +136,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
+
 
                     <Button
                         BorderBrush="Gray"
