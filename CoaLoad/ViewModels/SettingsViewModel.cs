@@ -7,21 +7,37 @@ namespace CoaLoad.ViewModels
 {
     public class SettingsViewModel : ReactiveObject
     {
-        public ObservableCollection<string> InstanceOptions { get; } = new()
+        public static ObservableCollection<string> InstanceOptions { get; } = new()
         {
             "https://instance1.cobalt.tools",
             "https://instance2.cobalt.tools",
             "https://instance3.cobalt.tools",
             "Custom Instance"
         };
+        
+        public static ObservableCollection<string> VideoQualityOptions { get; } = new()
+        {
+            "144p",
+            "240p",
+            "360p",
+            "480p",
+            "720p",
+            "1080p",
+            "1440p",
+            "4k",
+            "8k+"
+       
+        };
 
-        private string? _selectedInstance;
+        
+
+        public static string _selectedInstance;
         public string? SelectedInstance
         {
             get => _selectedInstance;
             set
             {
-                if (value == "Custom Instance")
+                if (value == InstanceOptions[InstanceOptions.Count - 1])
                 {
                     OpenCustomInstanceDialog();
                 }
@@ -33,6 +49,7 @@ namespace CoaLoad.ViewModels
         }
 
         private string? _customInstanceUrl;
+
         public string? CustomInstanceUrl
         {
             get => _customInstanceUrl;
@@ -40,6 +57,7 @@ namespace CoaLoad.ViewModels
         }
 
         public ReactiveCommand<Unit, Unit> SaveCommand { get; }
+        public static string SelectedVideoQuality { get; set; }
 
 
         public SettingsViewModel()

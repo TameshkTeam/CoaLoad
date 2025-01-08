@@ -15,6 +15,7 @@
     <PackageVersion Include="Avalonia.Android" Version="11.2.1" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageVersion Include="DialogHost.Avalonia" Version="0.9.1" />
+    <PackageVersion Include="JsonFlatFileDataStore" Version="2.4.2" />
     <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.1" />
   </ItemGroup>
 </Project>

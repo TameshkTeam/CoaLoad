@@ -1,6 +1,7 @@
 using System;
 using Avalonia;
 using Avalonia.Controls;
+using CoaLoad.Helpers;
 
 namespace CoaLoad.Views;
 
@@ -13,6 +14,7 @@ public partial class MainWindow : Window
             CenterWindowOnDesktop();
         };
         InitializeComponent();
+        AppSettings.SetupSettingsDb(TopLevel.GetTopLevel(this).StorageProvider);
     }
 
     private void CenterWindowOnDesktop()
