@@ -112,14 +112,13 @@ public partial class MainView : UserControl
     private async void ClipboardButtonClicked(object? sender, RoutedEventArgs e)
     {
         var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
-        UrlInputBox.Text = await clipboard.GetTextAsync();
+        UrlInputBox.Text = await clipboard!.GetTextAsync();
     }
 
     private void SettingsButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        if (Parent is Window window)
-        {
-            window.Content = new SettingsView { DataContext = new SettingsViewModel() };
-        }
+
+            this.Content = new SettingsView();
+        
     }
 }

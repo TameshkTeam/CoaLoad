@@ -1,28 +1,21 @@
-using System;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using CoaLoad.ViewModels;
+using DialogHostAvalonia;
 
-namespace CoaLoad.Views;
-
-public partial class SettingsView : UserControl
+namespace CoaLoad.Views
 {
-    public SettingsView()
+    public partial class SettingsView : UserControl
     {
-        InitializeComponent();
-    }
-
-    private void BackButton_OnClick(object? sender, RoutedEventArgs e)
-    {
-        if (Parent is Window window)
+        public SettingsView()
         {
-            window.Content = new MainView { DataContext = new MainViewModel() };
-        }    }
+            InitializeComponent();
+            DataContext = new SettingsViewModel();
+        }
 
-    private void SaveButton_Click(object? sender, RoutedEventArgs e)
-    {
+        private void CustomInstance_OnDialogClosing(object? sender, DialogClosingEventArgs e)
+        {
+            System.Console.WriteLine($"Dialog host value: {e.Parameter ?? string.Empty}");
+            InstanceComboBox.SelectedIndex = 0;
+        }
     }
-
 }

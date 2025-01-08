@@ -3,7 +3,8 @@ using Android.Content.PM;
 using Android.OS;
 using Avalonia;
 using Avalonia.Android;
-using Android.Views; // Import this for Window and SoftInput
+using Android.Views;
+using Avalonia.ReactiveUI; // Import this for Window and SoftInput
 
 namespace CoaLoad.Android
 {
@@ -18,7 +19,8 @@ namespace CoaLoad.Android
         protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
         {
             return base.CustomizeAppBuilder(builder)
-                .WithInterFont();
+                .WithInterFont()
+                .UseReactiveUI();
         }
 
         // Override the OnCreate method to set the soft input mode

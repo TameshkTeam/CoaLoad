@@ -1,11 +1,14 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:CoaLoad.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CoaLoad.Views.MainView"
-             x:DataType="vm:MainViewModel">
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="CoaLoad.Views.MainView"
+    x:DataType="vm:MainViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:CoaLoad.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <UserControl.Resources>
         <StreamGeometry x:Key="music_regular">M11.5,2.75 C11.5,2.22634895 12.0230228,1.86388952 12.5133347,2.04775015 L18.8913911,4.43943933 C20.1598961,4.91511241 21.0002742,6.1277638 21.0002742,7.48252202 L21.0002742,10.7513533 C21.0002742,11.2750044 20.4772513,11.6374638 19.9869395,11.4536032 L13,8.83332147 L13,17.5 C13,17.5545945 12.9941667,17.6078265 12.9830895,17.6591069 C12.9940859,17.7709636 13,17.884807 13,18 C13,20.2596863 10.7242052,22 8,22 C5.27579485,22 3,20.2596863 3,18 C3,15.7403137 5.27579485,14 8,14 C9.3521238,14 10.5937815,14.428727 11.5015337,15.1368931 L11.5,2.75 Z M8,15.5 C6.02978478,15.5 4.5,16.6698354 4.5,18 C4.5,19.3301646 6.02978478,20.5 8,20.5 C9.97021522,20.5 11.5,19.3301646 11.5,18 C11.5,16.6698354 9.97021522,15.5 8,15.5 Z M13,3.83223733 L13,7.23159672 L19.5002742,9.669116 L19.5002742,7.48252202 C19.5002742,6.75303682 19.0477629,6.10007069 18.3647217,5.84393903 L13,3.83223733 Z</StreamGeometry>
         <StreamGeometry x:Key="star_emphasis_regular">M8.64376 8.20797L11.3273 2.75967C11.6022 2.20153 12.398 2.20153 12.6729 2.75967L15.3565 8.20797L21.3674 9.07657C21.983 9.16552 22.229 9.92197 21.7835 10.356L17.436 14.5922L18.4623 20.5779C18.5674 21.1908 17.9238 21.6581 17.3736 21.3682L12.0001 18.5378L6.62666 21.3682C6.07618 21.6582 5.43236 21.1904 5.53802 20.5773L6.56941 14.5922L2.21703 10.3563C1.77116 9.9224 2.01708 9.16555 2.63286 9.07657L8.64376 8.20797ZM12.0001 4.78844L9.81483 9.22516C9.70558 9.44698 9.49401 9.60069 9.24928 9.63605L4.35442 10.3434L7.89869 13.7927C8.07589 13.9652 8.1567 14.2139 8.11471 14.4576L7.27482 19.3315L11.6506 17.0266C11.8694 16.9113 12.1309 16.9113 12.3497 17.0266L16.7269 19.3322L15.8909 14.457C15.8492 14.2136 15.9299 13.9653 16.1067 13.7931L19.647 10.3435L14.751 9.63605C14.5063 9.60069 14.2947 9.44698 14.1854 9.22516L12.0001 4.78844Z M1.16438 18.2185C0.905619 17.8951 0.95806 17.4231 1.28151 17.1644L3.78151 15.1643C4.10495 14.9056 4.57692 14.958 4.83568 15.2815C5.09444 15.6049 5.042 16.0769 4.71855 16.3357L2.21855 18.3357C1.8951 18.5944 1.42313 18.542 1.16438 18.2185Z M22.7186 17.1643C23.042 17.4231 23.0945 17.8951 22.8357 18.2185C22.5769 18.542 22.105 18.5944 21.7815 18.3357L19.2815 16.3357C18.9581 16.0769 18.9056 15.6049 19.1644 15.2815C19.4232 14.958 19.8951 14.9056 20.2186 15.1643L22.7186 17.1643Z M1.16438 3.78148C0.905619 4.10492 0.95806 4.57689 1.28151 4.83565L3.78151 6.83565C4.10495 7.09441 4.57692 7.04197 4.83568 6.71852C5.09444 6.39508 5.042 5.92311 4.71855 5.66435L2.21855 3.66435C1.8951 3.40559 1.42313 3.45803 1.16438 3.78148Z M22.7186 4.83565C23.042 4.57689 23.0945 4.10492 22.8357 3.78148C22.5769 3.45803 22.105 3.40559 21.7815 3.66435L19.2815 5.66435C18.9581 5.92311 18.9056 6.39508 19.1644 6.71852C19.4232 7.04197 19.8951 7.09441 20.2186 6.83565L22.7186 4.83565Z</StreamGeometry>
@@ -13,114 +16,204 @@
         <StreamGeometry x:Key="clipboard_link_regular">M15.9862 3.99944C15.8616 2.87472 14.9079 2 13.75 2H10.25C9.09205 2 8.13841 2.87472 8.01379 3.99944L6.25 4C5.00736 4 4 5.00736 4 6.25V19.75C4 20.9926 5.00736 22 6.25 22H10.9996C10.6634 21.5523 10.4005 21.0464 10.2289 20.5H6.25C5.83579 20.5 5.5 20.1642 5.5 19.75V6.25C5.5 5.83579 5.83579 5.5 6.25 5.5L8.37902 5.5002C8.78267 6.1031 9.46997 6.5 10.25 6.5H13.75C14.5284 6.5 15.2145 6.10471 15.6185 5.50391H17.5023V5.50002L17.75 5.5C18.1642 5.5 18.5 5.83579 18.5 6.25V14H20V6.25C20 5.00736 18.9926 4 17.75 4L15.9862 3.99944ZM10.25 3.5H13.75C14.1642 3.5 14.5 3.83579 14.5 4.25C14.5 4.66421 14.1642 5 13.75 5H10.25C9.83579 5 9.5 4.66421 9.5 4.25C9.5 3.83579 9.83579 3.5 10.25 3.5Z M19 15C21.2091 15 23 16.7909 23 19C23 21.1422 21.316 22.8911 19.1996 22.9951L19 23C18.5858 23 18.25 22.6642 18.25 22.25C18.25 21.8703 18.5322 21.5565 18.8982 21.5068L19 21.5C20.3807 21.5 21.5 20.3807 21.5 19C21.5 17.6745 20.4685 16.59 19.1644 16.5053L19 16.5C18.5858 16.5 18.25 16.1642 18.25 15.75C18.25 15.3703 18.5322 15.0565 18.8982 15.0068L19 15Z M15 15C15.4142 15 15.75 15.3358 15.75 15.75C15.75 16.1297 15.4678 16.4435 15.1018 16.4932L15 16.5C13.6193 16.5 12.5 17.6193 12.5 19C12.5 20.3255 13.5315 21.41 14.8356 21.4947L15 21.5C15.4142 21.5 15.75 21.8358 15.75 22.25C15.75 22.6297 15.4678 22.9435 15.1018 22.9932L15 23C12.7909 23 11 21.2091 11 19C11 16.8578 12.684 15.1089 14.8004 15.0049L15 15Z M15.25 18.25H18.75C19.1642 18.25 19.5 18.5858 19.5 19C19.5 19.3797 19.2178 19.6935 18.8518 19.7432L18.75 19.75H15.25C14.8358 19.75 14.5 19.4142 14.5 19C14.5 18.6203 14.7822 18.3065 15.1482 18.2568L15.25 18.25Z</StreamGeometry>
     </UserControl.Resources>
     <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
-  </Design.DataContext>
-    
+        <!--
+            This only sets the DataContext for the previewer in an IDE,
+            to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)
+        -->
+        <vm:MainViewModel />
+    </Design.DataContext>
+
     <Panel>
-        
-        <Popup Name="NotificationPopup" IsOpen="false" Placement="Top" PlacementTarget="{Binding ElementName=UrlInputBox}" HorizontalAlignment="Center">
-            <Border Background="#191919" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Padding="10">
+
+        <Popup
+            HorizontalAlignment="Center"
+            IsOpen="false"
+            Name="NotificationPopup"
+            Placement="Top"
+            PlacementTarget="{Binding ElementName=UrlInputBox}">
+            <Border
+                Background="#191919"
+                BorderBrush="Black"
+                BorderThickness="1"
+                CornerRadius="10,10,0,0"
+                Padding="10">
                 <StackPanel Orientation="Vertical" Spacing="5">
-                    <TextBlock Name="NotificationMessage" Foreground="White" FontWeight="Bold" />
-                    <ProgressBar Name="NotificationProgressBar" Width="100" Height="1" Minimum="0" Maximum="3000" Value="3000" Foreground="DarkRed"/>
+                    <TextBlock
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Name="NotificationMessage" />
+                    <ProgressBar
+                        Foreground="DarkRed"
+                        Height="1"
+                        Maximum="3000"
+                        Minimum="0"
+                        Name="NotificationProgressBar"
+                        Value="3000"
+                        Width="100" />
                 </StackPanel>
             </Border>
         </Popup>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
-            <Button Content="Settings" Click="SettingsButton_OnClick" HorizontalAlignment="Center"/>
-            <Border Width="150" Height="150" CornerRadius="75">
-                <Image Source="avares://CoaLoad/Assets/cobalt.png"></Image>
+        <StackPanel
+            HorizontalAlignment="Center"
+            Spacing="20"
+            VerticalAlignment="Center">
+            <Button
+                Click="SettingsButton_OnClick"
+                Content="Settings"
+                HorizontalAlignment="Center" />
+            <Border
+                CornerRadius="75"
+                Height="150"
+                Width="150">
+                <Image Source="avares://CoaLoad/Assets/cobalt.png" />
             </Border>
 
 
-            <Grid Width="300" Height="35">
-                <TextBox Watermark="Paste the link here" TextAlignment="Center" Background="#1E1E1E" Foreground="White"
-                         BorderBrush="#383838" BorderThickness="2" CornerRadius="11" Name="UrlInputBox"
-                         VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                <Button Width="35" Height="35" Background="#1E1E1E" BorderBrush="#383838" BorderThickness="2"
-                        CornerRadius="11" Click="ClipboardButtonClicked" Margin="0" VerticalAlignment="Center"
-                        HorizontalAlignment="Right">
+            <Grid Height="35" Width="300">
+                <TextBox
+                    Background="#1E1E1E"
+                    BorderBrush="#383838"
+                    BorderThickness="2"
+                    CornerRadius="11"
+                    Foreground="White"
+                    HorizontalAlignment="Stretch"
+                    Name="UrlInputBox"
+                    TextAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    Watermark="Paste the link here" />
+                <Button
+                    Background="#1E1E1E"
+                    BorderBrush="#383838"
+                    BorderThickness="2"
+                    Click="ClipboardButtonClicked"
+                    CornerRadius="11"
+                    Height="35"
+                    HorizontalAlignment="Right"
+                    Margin="0"
+                    VerticalAlignment="Center"
+                    Width="35">
                     <Viewbox MaxHeight="20">
-                        <Path Fill="White" Data="{StaticResource clipboard_link_regular}" />
+                        <Path Data="{StaticResource clipboard_link_regular}" Fill="White" />
                     </Viewbox>
                 </Button>
             </Grid>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="10">
 
-<ToggleButton Width="80" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" ClickMode="Release" Click="AutoButton_OnClick" Name="AutoButton" IsChecked="True">
-    <ToggleButton.Styles>
-        <!-- https://stackoverflow.com/questions/77196387/how-to-set-the-background-colour-of-a-checked-toggle-button-in-avalonia-ui-deskt -->
-        <Style Selector="ToggleButton">
-            <Setter Property="Background" Value="#191919" />
-            <Setter Property="Foreground" Value="#e1e1e1" />
-        </Style>
-        <Style Selector="ToggleButton:checked /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="#e1e1e1" />
-            <Setter Property="Foreground" Value="Black" />
-        </Style>
-    </ToggleButton.Styles>
-    <StackPanel Orientation="Horizontal" Spacing="5">
-        <Viewbox MaxHeight="20" Stretch="Uniform">
-            <Path Name="AutoIcon" Fill="Black" Data="{StaticResource star_emphasis_regular}" />
-        </Viewbox>
-        <TextBlock Text="Auto" VerticalAlignment="Center" FontWeight="SemiBold"/>
-    </StackPanel>
-</ToggleButton>
+                <ToggleButton
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Click="AutoButton_OnClick"
+                    ClickMode="Release"
+                    CornerRadius="5"
+                    IsChecked="True"
+                    Name="AutoButton"
+                    Width="80">
+                    <ToggleButton.Styles>
+                        <!--  https://stackoverflow.com/questions/77196387/how-to-set-the-background-colour-of-a-checked-toggle-button-in-avalonia-ui-deskt  -->
+                        <Style Selector="ToggleButton">
+                            <Setter Property="Background" Value="#191919" />
+                            <Setter Property="Foreground" Value="#e1e1e1" />
+                        </Style>
+                        <Style Selector="ToggleButton:checked /template/ ContentPresenter#PART_ContentPresenter">
+                            <Setter Property="Background" Value="#e1e1e1" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Style>
+                    </ToggleButton.Styles>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Viewbox MaxHeight="20" Stretch="Uniform">
+                            <Path
+                                Data="{StaticResource star_emphasis_regular}"
+                                Fill="Black"
+                                Name="AutoIcon" />
+                        </Viewbox>
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Auto"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </ToggleButton>
 
-<ToggleButton Width="80" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" ClickMode="Release" Click="AudioButton_OnClick" Name="AudioButton">
-    <ToggleButton.Styles>
-        <Style Selector="ToggleButton">
-            <Setter Property="Background" Value="#191919" />
-            <Setter Property="Foreground" Value="#e1e1e1" />
-        </Style>
-        <Style Selector="ToggleButton:checked /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="#e1e1e1" />
-            <Setter Property="Foreground" Value="Black" />
-        </Style>
-    </ToggleButton.Styles>
-    <StackPanel Orientation="Horizontal" Spacing="5">
-        <Viewbox MaxHeight="20" Stretch="Uniform">
-            <Path Name="AudioIcon" Fill="White" Data="{StaticResource music_regular}" />
-        </Viewbox>
-        <TextBlock Text="Audio" VerticalAlignment="Center" FontWeight="SemiBold"/>
-    </StackPanel>
-</ToggleButton>
+                <ToggleButton
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Click="AudioButton_OnClick"
+                    ClickMode="Release"
+                    CornerRadius="5"
+                    Name="AudioButton"
+                    Width="80">
+                    <ToggleButton.Styles>
+                        <Style Selector="ToggleButton">
+                            <Setter Property="Background" Value="#191919" />
+                            <Setter Property="Foreground" Value="#e1e1e1" />
+                        </Style>
+                        <Style Selector="ToggleButton:checked /template/ ContentPresenter#PART_ContentPresenter">
+                            <Setter Property="Background" Value="#e1e1e1" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Style>
+                    </ToggleButton.Styles>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Viewbox MaxHeight="20" Stretch="Uniform">
+                            <Path
+                                Data="{StaticResource music_regular}"
+                                Fill="White"
+                                Name="AudioIcon" />
+                        </Viewbox>
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Audio"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </ToggleButton>
 
-<ToggleButton Width="80" BorderBrush="Gray" BorderThickness="1" CornerRadius="5" ClickMode="Release" Click="MuteButton_OnClick" Name="MuteButton">
-    <ToggleButton.Styles>
-        <Style Selector="ToggleButton">
-            <Setter Property="Background" Value="#191919" />
-            <Setter Property="Foreground" Value="#e1e1e1" />
-        </Style>
-        <Style Selector="ToggleButton:checked /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="#e1e1e1" />
-            <Setter Property="Foreground" Value="Black" />
-        </Style>
-    </ToggleButton.Styles>
-    <StackPanel Orientation="Horizontal" Spacing="5">
-        <Viewbox MaxHeight="20" Stretch="Uniform">
-            <Path Name="MuteIcon" Fill="White" Data="{StaticResource speaker_off_regular}" />
-        </Viewbox>
-        <TextBlock Text="Mute" VerticalAlignment="Center" FontWeight="SemiBold"/>
-    </StackPanel>
-</ToggleButton>
+                <ToggleButton
+                    BorderBrush="Gray"
+                    BorderThickness="1"
+                    Click="MuteButton_OnClick"
+                    ClickMode="Release"
+                    CornerRadius="5"
+                    Name="MuteButton"
+                    Width="80">
+                    <ToggleButton.Styles>
+                        <Style Selector="ToggleButton">
+                            <Setter Property="Background" Value="#191919" />
+                            <Setter Property="Foreground" Value="#e1e1e1" />
+                        </Style>
+                        <Style Selector="ToggleButton:checked /template/ ContentPresenter#PART_ContentPresenter">
+                            <Setter Property="Background" Value="#e1e1e1" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Style>
+                    </ToggleButton.Styles>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Viewbox MaxHeight="20" Stretch="Uniform">
+                            <Path
+                                Data="{StaticResource speaker_off_regular}"
+                                Fill="White"
+                                Name="MuteIcon" />
+                        </Viewbox>
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Mute"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </ToggleButton>
             </StackPanel>
 
             <Button
-                    Width="300"
-                    HorizontalAlignment="Center"
-                    Background="#282828"
-                    Foreground="White"
-                    BorderBrush="Gray"
-                    BorderThickness="1"
-                    CornerRadius="11"
-                    Click="DownloadButtonClicked">
-                <TextBlock Text="Download" HorizontalAlignment="Center"/>
+                Background="#282828"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                Click="DownloadButtonClicked"
+                CornerRadius="11"
+                Foreground="White"
+                HorizontalAlignment="Center"
+                Width="300">
+                <TextBlock HorizontalAlignment="Center" Text="Download" />
             </Button>
 
         </StackPanel>
     </Panel>
-    
+
 </UserControl>
