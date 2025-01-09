@@ -29,7 +29,7 @@ namespace CoaLoad.ViewModels
             "8k+"
         };
 
-        public static string? _selectedInstance;
+        private static string? _selectedInstance;
         public string? SelectedInstance
         {
             get => _selectedInstance;
@@ -45,7 +45,8 @@ namespace CoaLoad.ViewModels
                 }
             }
         }
-
+        
+        
         private string? _customInstanceUrl;
         public string? CustomInstanceUrl
         {
@@ -53,7 +54,7 @@ namespace CoaLoad.ViewModels
             set => this.RaiseAndSetIfChanged(ref _customInstanceUrl, value);
         }
 
-        public static string? _selectedVideoQuality;
+        private static string? _selectedVideoQuality;
         public string? SelectedVideoQuality
         {
             get => _selectedVideoQuality;
@@ -70,16 +71,9 @@ namespace CoaLoad.ViewModels
         {
             // Load the settings from the JSON file
             var loadedSettings = await AppSettings.LoadSettings();
-
+            Console.WriteLine("Loaded settings: "+loadedSettings.Instance + " - " + loadedSettings.VideoQuality);
             // Apply the loaded settings to the ViewModel properties
-            SelectedInstance = InstanceOptions.Contains(loadedSettings.Instance)
-                ? loadedSettings.Instance
-                : "Custom Instance";
-
-            if (SelectedInstance == "Custom Instance")
-            {
-                CustomInstanceUrl = loadedSettings.Instance;
-            }
+            SelectedInstance = loadedSettings.Instance;
 
             SelectedVideoQuality = VideoQualityOptions.Contains(loadedSettings.VideoQuality)
                 ? loadedSettings.VideoQuality

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -19,29 +20,32 @@ namespace CoaLoad.Views
 
         private void CustomInstance_OnDialogClosing(object? sender, DialogClosingEventArgs e)
         {
-            if (String.IsNullOrEmpty(e.Parameter?.ToString()))
+            if (e.Parameter == null)
             {
+                Console.WriteLine("is null");
                 InstanceComboBox.SelectedIndex = 0;
+                return;
             }
-            Console.WriteLine($"Dialog host value: {e.Parameter ?? string.Empty}");
-            // Set the last value of InstanceOptions to the entered value
-            SettingsViewModel.InstanceOptions[SettingsViewModel.InstanceOptions.Count - 1] = "Custom: " + e.Parameter?.ToString() ?? string.Empty;
-            InstanceComboBox.SelectedIndex = SettingsViewModel.InstanceOptions.Count - 1;
-            
-            
+            InstanceComboBox.PlaceholderText = e.Parameter.ToString();
+            Console.WriteLine($"Dialog host value: {e.Parameter}");
+            var vmSettings = (SettingsViewModel)DataContext;
+            vmSettings.SelectedInstance = e.Parameter.ToString();
         }
-
+        // TODO: value validation
+        // BUG: problems saving custom instance
 
         private async void SaveSettingsButton_OnClick(object? sender, RoutedEventArgs e)
         {
+            var vmSettings = (SettingsViewModel)DataContext;
             var newSettings = new AppSettings.SettingsValues
             {
-                Instance = SettingsViewModel._selectedInstance,
-                VideoQuality = SettingsViewModel._selectedVideoQuality
+                Instance = vmSettings.SelectedInstance,
+                VideoQuality = vmSettings.SelectedVideoQuality
             };
             var res = await AppSettings.SaveSettings(newSettings);
             if (res)
             {
+                Console.WriteLine("Settings saved: " + newSettings.Instance + " - " + newSettings.VideoQuality);
                 SaveButton.Foreground = Brushes.LawnGreen;
                 SaveButtonTextBox.Text = "Saved!";
                 await Task.Delay(500);
