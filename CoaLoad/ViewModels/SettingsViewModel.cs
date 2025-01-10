@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using CoaLoad.Helpers;
 using ReactiveUI;
@@ -29,7 +30,7 @@ namespace CoaLoad.ViewModels
             "8k+"
         };
 
-        private static string? _selectedInstance;
+        public static string? _selectedInstance;
         public string? SelectedInstance
         {
             get => _selectedInstance;
@@ -42,19 +43,13 @@ namespace CoaLoad.ViewModels
                 else
                 {
                     this.RaiseAndSetIfChanged(ref _selectedInstance, value);
+                    _selectedInstance = value;
+                    Console.WriteLine($"Selected instance: {value}");
                 }
             }
         }
-        
-        
-        private string? _customInstanceUrl;
-        public string? CustomInstanceUrl
-        {
-            get => _customInstanceUrl;
-            set => this.RaiseAndSetIfChanged(ref _customInstanceUrl, value);
-        }
 
-        private static string? _selectedVideoQuality;
+        public static string? _selectedVideoQuality;
         public string? SelectedVideoQuality
         {
             get => _selectedVideoQuality;
@@ -84,5 +79,6 @@ namespace CoaLoad.ViewModels
         {
             DialogHostAvalonia.DialogHost.Show(this, "CustomInstanceDialogHost");
         }
+        
     }
 }

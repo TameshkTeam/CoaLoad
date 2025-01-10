@@ -105,6 +105,7 @@
                         HorizontalAlignment="Center"
                         ItemsSource="{Binding InstanceOptions}"
                         Name="InstanceComboBox"
+                        PlaceholderText="{Binding SelectedInstance, Mode=TwoWay}"
                         SelectedItem="{Binding SelectedInstance, Mode=TwoWay}"
                         Width="300">
                         <ComboBox.ItemTemplate>

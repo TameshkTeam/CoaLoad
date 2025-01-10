@@ -26,20 +26,20 @@ namespace CoaLoad.Views
                 InstanceComboBox.SelectedIndex = 0;
                 return;
             }
+            
             InstanceComboBox.PlaceholderText = e.Parameter.ToString();
             Console.WriteLine($"Dialog host value: {e.Parameter}");
             var vmSettings = (SettingsViewModel)DataContext;
             vmSettings.SelectedInstance = e.Parameter.ToString();
         }
         // TODO: value validation
-        // BUG: problems saving custom instance
 
         private async void SaveSettingsButton_OnClick(object? sender, RoutedEventArgs e)
         {
             var vmSettings = (SettingsViewModel)DataContext;
             var newSettings = new AppSettings.SettingsValues
             {
-                Instance = vmSettings.SelectedInstance,
+                Instance = SettingsViewModel._selectedInstance,
                 VideoQuality = vmSettings.SelectedVideoQuality
             };
             var res = await AppSettings.SaveSettings(newSettings);
@@ -57,5 +57,6 @@ namespace CoaLoad.Views
         {
             Content = new MainView();
         }
+        
     }
 }
