@@ -1,5 +1,5 @@
 using System;
-using System.Diagnostics;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -26,13 +26,15 @@ namespace CoaLoad.Views
                 InstanceComboBox.SelectedIndex = 0;
                 return;
             }
-            
+            if (!Uri.TryCreate(e.Parameter.ToString(), UriKind.Absolute, out _))
+            {
+                InstanceComboBox.BorderBrush = Brushes.Red;
+            }
             InstanceComboBox.PlaceholderText = e.Parameter.ToString();
             Console.WriteLine($"Dialog host value: {e.Parameter}");
             var vmSettings = (SettingsViewModel)DataContext;
             vmSettings.SelectedInstance = e.Parameter.ToString();
         }
-        // TODO: value validation
 
         private async void SaveSettingsButton_OnClick(object? sender, RoutedEventArgs e)
         {

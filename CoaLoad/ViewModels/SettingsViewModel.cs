@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using CoaLoad.Helpers;
 using ReactiveUI;
@@ -11,7 +10,7 @@ namespace CoaLoad.ViewModels
     {
         public static ObservableCollection<string> InstanceOptions { get; } = new()
         {
-            "https://instance1.cobalt.tools",
+            "https://cblt.fariz.dev",
             "https://instance2.cobalt.tools",
             "https://instance3.cobalt.tools",
             "Custom Instance"

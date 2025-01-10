@@ -1,8 +1,12 @@
 using System;
+using System.Linq;
+using System.Security.Cryptography;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Platform.Storage;
 using Avalonia.Threading;
+using CoaLoad.Helpers;
 using CoaLoad.ViewModels;
 
 namespace CoaLoad.Views;
@@ -32,7 +36,10 @@ public partial class MainView : UserControl
         }
         else
         {
-            
+            var settings = await AppSettings.LoadSettings();
+            var filepath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var filename = $"{new Random().Next(10000, 99999)}.mp4";
+            await DownloadFromCobalt.Download(settings.Instance, settings.VideoQuality, UrlInputBox.Text, filepath + "/" + filename);
             
         }
     }
