@@ -76,7 +76,7 @@
 
         <!--  Main Content  -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <dialogHost:DialogHost DialogClosing="CustomInstance_OnDialogClosing" Identifier="CustomInstanceDialogHost">
+            <dialogHost:DialogHost DialogClosing="CustomInstance_OnDialogClosing" Identifier="CustomInstanceDialogHost" OverlayBackground="Black">
                 <dialogHost:DialogHost.DialogContent />
 
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">

@@ -39,7 +39,7 @@ public partial class MainView : UserControl
             var settings = await AppSettings.LoadSettings();
             var filepath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             var filename = $"{new Random().Next(10000, 99999)}.mp4";
-            await DownloadFromCobalt.Download(settings.Instance, settings.VideoQuality, UrlInputBox.Text, filepath + "/" + filename);
+            await DownloadFromCobalt.Download( UrlInputBox.Text, filepath + "/" + filename,settings.Instance);
             
         }
     }
