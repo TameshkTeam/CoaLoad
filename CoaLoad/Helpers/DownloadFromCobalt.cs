@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -9,11 +10,8 @@ namespace CoaLoad.Helpers
 {
     public class DownloadFromCobalt
     {
-        private const string CobaltApiUrl = "https://api.cobalt.tools";  // Corrected API URL
-
         public static async Task<bool> Download(string contentUrl, string downloadPath, string CobadltApiUrl)
         {
-            // Validate arguments
             if (string.IsNullOrEmpty(contentUrl) || string.IsNullOrEmpty(downloadPath))
             {
                 throw new ArgumentNullException("Both contentUrl and downloadPath must be provided.");
@@ -21,30 +19,25 @@ namespace CoaLoad.Helpers
 
             Console.WriteLine($"Downloading file from {contentUrl} to {downloadPath}");
 
-            // Create the request body object for POST request
-            var requestBody = new Dictionary<string, string>()
-            {
-                ["url"] = contentUrl
-            };
-
-            var jsonContent = JsonSerializer.Serialize(requestBody);
-            var buffer = System.Text.Encoding.UTF8.GetBytes(jsonContent);
+            // Create the request body
+            var requestBody = new { url = contentUrl };
+            using StringContent jsonContent = new(
+                JsonSerializer.Serialize(requestBody),
+                Encoding.UTF8,
+                "application/json");
 
             using (var client = new HttpClient())
             {
-                // Add necessary headers for POST request
-                client.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "application/json");
-                client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
-
-                // If authorization token is provided, add it to the headers
-    
+                // Add required headers
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                //client.DefaultRequestHeaders.Add("Content-Type","application/json");
 
                 try
                 {
                     Console.WriteLine("Sending POST request to Cobalt API...");
 
-                    // Send the POST request asynchronously
-                    var response = await client.PostAsync(CobaltApiUrl, new ByteArrayContent(buffer));
+                    // Send POST request
+                    var response = await client.PostAsync(CobadltApiUrl, jsonContent);
 
                     Console.WriteLine($"Response status code: {response.StatusCode}");
 
