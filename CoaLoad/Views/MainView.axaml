@@ -217,6 +217,7 @@
             </StackPanel>
 
             <Button
+                Name="DownloadButton"
                 Background="#282828"
                 BorderBrush="Gray"
                 BorderThickness="1"
@@ -225,7 +226,7 @@
                 Foreground="White"
                 HorizontalAlignment="Center"
                 Width="300">
-                <TextBlock HorizontalAlignment="Center" Text="Download" />
+                <TextBlock HorizontalAlignment="Center" Text="Download" Name="DownloadButtonText" />
             </Button>
 
         </StackPanel>

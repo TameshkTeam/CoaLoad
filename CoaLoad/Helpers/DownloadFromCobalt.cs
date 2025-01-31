@@ -6,126 +6,66 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace CoaLoad.Helpers
+namespace CoaLoad.Helpers;
+// TODO: Add error handling and add video quality
+public class DownloadFromCobalt
 {
-    public class DownloadFromCobalt
+    public static async Task<string> GetDownloadUrl(string _cobaltInstance, string _mediaUrl)
     {
-        public static async Task<bool> Download(string contentUrl, string downloadPath, string CobadltApiUrl)
+        using (var client = new HttpClient())
         {
-            if (string.IsNullOrEmpty(contentUrl) || string.IsNullOrEmpty(downloadPath))
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+            var content = new StringContent("{\"url\":\"" + _mediaUrl + "\"}", Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(_cobaltInstance, content);
+            if (response.IsSuccessStatusCode)
             {
-                throw new ArgumentNullException("Both contentUrl and downloadPath must be provided.");
-            }
-
-            Console.WriteLine($"Downloading file from {contentUrl} to {downloadPath}");
-
-            // Create the request body
-            var requestBody = new { url = contentUrl };
-            using StringContent jsonContent = new(
-                JsonSerializer.Serialize(requestBody),
-                Encoding.UTF8,
-                "application/json");
-
-            using (var client = new HttpClient())
-            {
-                // Add required headers
-                client.DefaultRequestHeaders.Add("Accept", "application/json");
-                //client.DefaultRequestHeaders.Add("Content-Type","application/json");
-
-                try
-                {
-                    Console.WriteLine("Sending POST request to Cobalt API...");
-
-                    // Send POST request
-                    var response = await client.PostAsync(CobadltApiUrl, jsonContent);
-
-                    Console.WriteLine($"Response status code: {response.StatusCode}");
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var responseContent = await response.Content.ReadAsStringAsync();
-                        return await HandleResponse(responseContent, downloadPath);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Download failed with status code: {response.StatusCode}");
-                        return false;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Download error: {ex.Message}");
-                    return false;
-                }
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<Dictionary<string, string>>(responseContent);
+                Console.WriteLine(result["url"]);
+                return result["url"];
             }
         }
 
-        private static async Task<bool> HandleResponse(string responseContent, string downloadPath)
+        return string.Empty;
+    }
+
+    public static async Task<bool> DownloadFile(string _downloadUrl, string _filepath, IProgress<double> progress)
+    {
+        using (var client = new HttpClient())
         {
-            try
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+            var response = await client.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead);
+            if (response.IsSuccessStatusCode)
             {
-                using (JsonDocument document = JsonDocument.Parse(responseContent))
+                using (var contentStream = await response.Content.ReadAsStreamAsync())
+                using (var fileStream = new FileStream(_filepath, FileMode.Create, FileAccess.Write, FileShare.None,
+                           8192, true))
                 {
-                    JsonElement root = document.RootElement;
-                    if (root.TryGetProperty("status", out JsonElement statusElement))
+                    var totalRead = 0L;
+                    var buffer = new byte[8192];
+                    var isMoreToRead = true;
+
+                    do
                     {
-                        string status = statusElement.GetString();
-                        if (status == "tunnel" || status == "redirect")
+                        var read = await contentStream.ReadAsync(buffer, 0, buffer.Length);
+                        if (read == 0)
                         {
-                            if (root.TryGetProperty("url", out JsonElement urlElement))
-                            {
-                                string downloadUrl = urlElement.GetString();
-                                return await DownloadFile(downloadUrl, downloadPath);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Cobalt API response missing 'url' property.");
-                                return false;
-                            }
+                            isMoreToRead = false;
+                            progress.Report(totalRead / (1024d * 1024d));
+                            continue;
                         }
-                        else
-                        {
-                            Console.WriteLine($"Cobalt API returned status: {status}. Full response: {responseContent}");
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Cobalt API response missing 'status' property. Full response: {responseContent}");
-                        return false;
-                    }
+
+                        await fileStream.WriteAsync(buffer, 0, read);
+                        totalRead += read;
+                        progress.Report(Math.Round(totalRead / (1024d * 1024d), 1));
+                    } while (isMoreToRead);
                 }
-            }
-            catch (JsonException ex)
-            {
-                Console.WriteLine($"Error parsing JSON response: {ex.Message}. Full response: {responseContent}");
-                return false;
+
+                return true;
             }
         }
 
-        private static async Task<bool> DownloadFile(string downloadUrl, string downloadPath)
-        {
-            Console.WriteLine($"Downloading file from {downloadUrl} to {downloadPath}");
-
-            using (var client = new HttpClient())
-            {
-                using (var response = await client.GetAsync(downloadUrl))
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        using (var fileStream = new FileStream(downloadPath, FileMode.Create))
-                        {
-                            await response.Content.CopyToAsync(fileStream);
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Failed to download file from {downloadUrl}");
-                        return false;
-                    }
-                }
-            }
-        }
+        return false;
     }
 }

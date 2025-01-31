@@ -1,16 +1,14 @@
 using System;
-using System.Linq;
-using System.Security.Cryptography;
+using System.IO;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
-using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using CoaLoad.Helpers;
-using CoaLoad.ViewModels;
+
 
 namespace CoaLoad.Views;
-
+// TODO: Get download type
 public partial class MainView : UserControl
 {
     private DispatcherTimer _notificationTimer;
@@ -28,7 +26,7 @@ public partial class MainView : UserControl
 
     private async void DownloadButtonClicked(object sender, RoutedEventArgs e)
     {
-        if (string.IsNullOrEmpty(UrlInputBox.Text)) // Check if TextBox is empty
+        if (string.IsNullOrEmpty(UrlInputBox.Text))
         {
             _originalTextBoxBorderBrush = UrlInputBox.BorderBrush as Brush;
             UrlInputBox.BorderBrush = Brushes.IndianRed;
@@ -36,13 +34,44 @@ public partial class MainView : UserControl
         }
         else
         {
+            DownloadButton.IsEnabled = false;
+            DownloadButtonText.Text = "Please wait...";
             var settings = await AppSettings.LoadSettings();
-            var filepath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
+            if (!Directory.Exists(filepath + "/CoaLoad")) Directory.CreateDirectory(filepath + "/CoaLoad");
             var filename = $"{new Random().Next(10000, 99999)}.mp4";
-            await DownloadFromCobalt.Download( UrlInputBox.Text, filepath + "/" + filename,settings.Instance);
-            
+            var downloadUrl = await DownloadFromCobalt.GetDownloadUrl(settings.Instance, UrlInputBox.Text);
+            if (string.IsNullOrEmpty(downloadUrl))
+            {
+                Console.WriteLine(downloadUrl);
+                ShowNotification("Failed to download the video.", 2000);
+
+                DownloadButton.IsEnabled = true;
+                DownloadButtonText.Text = "Download";
+            }
+            else
+            {
+                var progress = new Progress<double>(sizeInMb =>
+                {
+                    // Update your ProgressBar here
+                    UrlInputBox.BorderBrush = Brushes.GreenYellow;
+                    NotificationMessage.Text = sizeInMb.ToString() + " MB Downloaded";
+                    NotificationMessage.TextAlignment = TextAlignment.Center;
+                    //NotificationProgressBar.Maximum = 50;
+                    NotificationProgressBar.Value = sizeInMb;
+                    NotificationPopup.IsOpen = true;
+                });
+                DownloadButton.IsEnabled = false;
+                DownloadButtonText.Text = "Downloading...";
+                await DownloadFromCobalt.DownloadFile(downloadUrl, filepath + "/CoaLoad/" + filename, progress);
+                DownloadButton.IsEnabled = true;
+                DownloadButtonText.Text = "Download";
+                NotificationPopup.IsOpen = false;
+                ShowNotification("Download completed.", 2000);
+            }
         }
     }
+
 
     private void ShowNotification(string message, int duration)
     {
@@ -52,11 +81,9 @@ public partial class MainView : UserControl
         NotificationProgressBar.Value = duration;
         NotificationPopup.IsOpen = true;
 
-        // Calculate the offset to ensure the popup stays within the window
         _notificationTimer.Stop();
         _notificationTimer.Start();
     }
-
 
     private void NotificationTimer_Tick(object sender, EventArgs e)
     {
@@ -69,7 +96,6 @@ public partial class MainView : UserControl
             NotificationPopup.IsOpen = false;
         }
     }
-
 
     private void AutoButton_OnClick(object? sender, RoutedEventArgs e)
     {
@@ -124,8 +150,6 @@ public partial class MainView : UserControl
 
     private void SettingsButton_OnClick(object? sender, RoutedEventArgs e)
     {
-
-            this.Content = new SettingsView();
-        
+        Content = new SettingsView();
     }
 }
