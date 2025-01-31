@@ -34,7 +34,7 @@ jobs:
     - name: Publish
       run: dotnet publish --no-restore
     - name: Upload Signed APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Signed APK
         path: ./CoaLoad.Android/bin/Release/net9.0-android/publish/com.mahdium.coaload-Signed.apk
